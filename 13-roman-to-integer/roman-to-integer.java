@@ -1,28 +1,35 @@
 class Solution {
-     public int valueOf(char val) {
-        if (val == 'I') return 1;
-        if (val == 'V') return 5;
-        if (val == 'X') return 10;
-        if (val == 'L') return 50;
-        if (val == 'C') return 100;
-        if (val == 'D') return 500;
-        if (val == 'M') return 1000;
-        return 0;
-    }
     public int romanToInt(String s) {
-         int sum=0;
-        int prev=0;
-        for(int i=s.length()-1;i>=0;i--){
-            int cur=valueOf(s.charAt(i));
-            if(cur>=prev){
-                sum+=cur;
+        int ans = 0, num = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            switch (s.charAt(i)) {
+                case 'I':
+                    num = 1;
+                    break;
+                case 'V':
+                    num = 5;
+                    break;
+                case 'X':
+                    num = 10;
+                    break;
+                case 'L':
+                    num = 50;
+                    break;
+                case 'C':
+                    num = 100;
+                    break;
+                case 'D':
+                    num = 500;
+                    break;
+                case 'M':
+                    num = 1000;
+                    break;
             }
-            else{
-                sum-=cur;
-            }
-            prev=cur;
+            if (4 * num < ans)
+                ans -= num;
+            else
+                ans += num;
         }
-        return sum;
+        return ans;
     }
-        
-    }
+}
